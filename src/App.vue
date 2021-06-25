@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <main>
     <Table/>
-  </div>
+  </main>
 </template>
 
 <script>
+import './css/styles.css';
 import Table from './components/Table.vue'
 export default {
   name: 'App',
@@ -13,3 +14,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+
+
+</style>

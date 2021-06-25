@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <b-table hover striped :items="items"></b-table>
+     <b-table id="kids-table" hover striped :items="items"></b-table>
      
      
   </div>
@@ -23,6 +23,10 @@ export default{
 }
 </script>
 
-<style>
+<style scoped>
+
+#kids-table{
+    padding: 10px;
+}
 
 </style>
