@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <b-table hover striped :items="items"></b-table>
+     <b-table hover striped :items="items"></b-table>
+     
+     
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default{
   mounted(){
       api.get('/getKids').then(response => {
           console.log(response);
-            this.items = response.data;
+            this.items = response.data.data;
         });
   }
 }
