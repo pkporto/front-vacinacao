@@ -13,11 +13,11 @@ const routes = [
         component: Kids
     },
     {
-        path:'/Vaccination',
+        path:'/Vaccination/:id',
         component: Vaccination
     },
     {
-        path:'/Vaccine',
+        path:'/Vaccines',
         component: Vaccines
     }
 ];
