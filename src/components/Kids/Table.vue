@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-table id="kids-table" hover striped  :fields="fields" :items="items">
+    <b-table id="kids-table" hover striped  :fields="fields"  :items="items">
       <template v-slot:cell(actions)="{ item }" >
         <!-- <b-button variant="primary" @click="showModal">Cadastro de criança</b-button> -->
           <b-button variant="warning" style="margin: 0px 3px 0px 3px;"> <b-icon icon="pencil" font-scale="1.0"></b-icon></b-button>
@@ -39,6 +39,7 @@ export default {
       ]
     };
   },
+ 
   mounted() {
     api.get("/getKids",{
       dataType: 'json',

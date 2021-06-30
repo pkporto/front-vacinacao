@@ -13,15 +13,15 @@
          <b-form-input type="text" name="nome" v-model="kid.nome"></b-form-input> <br> <br>
          <h4>CPF</h4>
         <b-form-input type="text" name="fabricante" v-model="kid.cpf"> </b-form-input> <br> <br>
-        <b-button variant="success" style="margin: 20px;" id="show-btn" type="submit">SALVAR</b-button>
-        <b-button variant="danger" style="margin: 20px;" id="show-btn" @click=" hideModal()" type="button">CANCELAR</b-button>
+        <b-button variant="success" style="margin: 20px;" id="show-btn" type="submit" >SALVAR</b-button>
+        <b-button variant="danger" style="margin: 20px;" id="show-btn" @click="hideModal()" type="button">CANCELAR</b-button>
         <!-- <button type="submit"> Salvar</button> -->
      </b-form>
        </b-modal>
   </div>
 
         
-<Table/>
+<Table :key="componentKey"/>
     </main>
 </template>
 
@@ -35,14 +35,19 @@ export default {
   },
   
   data(){return{
+    componentKey:0,
       kid:{
           nome: null,
           cpf: null
       }
   }},
      methods: {
+         forceRerender() {
+      this.componentKey += 1;
+    },
          postData(e){
              this.axios.post("http://localhost:6767/addkid", this.kid).then((result) =>{
+               this.forceRerender();
                  alert(result.data.message);
              })
              e.preventDefault();
