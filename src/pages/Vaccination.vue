@@ -41,7 +41,7 @@ export default {
   },
   mounted() {
     api.get("/getVaccines").then((response) => {
-      this.items = response.data.data;
+      this.vacs = response.data.data;
       console.log(this.items);
 
     });
