@@ -14,7 +14,8 @@ const routes = [
     },
     {
         path:'/Vaccination/:id',
-        component: Vaccination
+        component: Vaccination,
+        props: true
     },
     {
         path:'/Vaccines',

@@ -4,7 +4,7 @@
       <template v-slot:cell(actions)="data">
         <!-- <b-button variant="primary" @click="showModal">Cadastro de criança</b-button> -->
          <b-button variant="primary" @click="editar(data.id)">Remover</b-button>
-          <b-button variant="primary" v-bind:href="'/vaccination/' + data.cpf">Vacinas</b-button>
+          <b-button variant="primary" v-bind:href="'/vaccination/' + id">Vacinas</b-button>
       </template>
     </b-table>
 
@@ -16,6 +16,7 @@ import api from "@/services/api.js";
 export default {
   data() {
     return {
+      id: this.$route.params.id,
       items: [],
       fields:[
         {
@@ -44,6 +45,7 @@ export default {
       }} ).then((response) => {
       this.items = response.data.data;
 console.log(this.items);
+console.log(this.id);
 
     });
   },
