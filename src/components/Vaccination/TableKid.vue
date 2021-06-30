@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-table id="kids-table" hover striped :items="items"></b-table>
+    <b-table id="kids-table" hover striped :fields="fields" :items="items"></b-table>
 
   </div>
 </template>
@@ -12,6 +12,20 @@ export default {
     return {
       id: this.$route.params.id,
       items: [],
+      fields:[
+        {
+          key: 'lote',
+          label:'LOTE'
+        },
+        {
+          key: 'enf',
+          label: 'ENFERMEIRA(O)'
+        },
+        {
+          key:'data_vac',
+          label: 'DATA VACINAÇÃO'
+        }
+      ]
     };
   },
   mounted() {

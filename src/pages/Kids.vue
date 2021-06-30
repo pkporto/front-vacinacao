@@ -1,5 +1,6 @@
 <template>
     <main>
+      <h1>Lista de crianças</h1>
       <div style="margin: 20px;">
         <b-button variant="primary" style="margin: 20px;" id="show-btn" @click="showModal">NOVA CRIANÇA</b-button>
         <b-button  href="/vaccines">LISTAR VACINAS</b-button>

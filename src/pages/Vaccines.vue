@@ -1,36 +1,28 @@
 <template>
     <main>
-
-        <b-button id="show-btn" @click="showModal">Nova vacina</b-button>
-    <b-button id="toggle-btn" @click="toggleModal">Toggle Modal</b-button>
-<!--  
- <div>
-    <b-modal ref="my-modal" hide-footer title="Using Component Methods">
-      <div class="d-block text-center">
-        <h3>Cadastro de vacinas</h3>
-      </div>
-      <b-form-input v-model="text" placeholder="Nome"></b-form-input>
-      <b-form-input v-model="text" placeholder="Fabricante"></b-form-input>
-      <b-form-input v-model="text" placeholder="Descrição"></b-form-input>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
-      <b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
-    </b-modal>
-  </div> -->
+      <h1>Lista de vacinas</h1>
+<div style="margin: 20px;">
+        <b-button variant="primary" style="margin: 20px;" id="show-btn" @click="showModal">Nova vacina</b-button>
+       <b-button href="/kids" >Cancelar</b-button>
+</div>
 
  <div>
     <b-modal ref="my-modal" hide-footer title="Cadastro de Vacinas">
-     <form @submit="postData" method="post">
-         <input type="text" name="nome" v-model="vac.nome"> <br> <br>
-        <input type="text" name="fabricante" v-model="vac.fabricante"><br> <br>
-         <input type="text" name="descricao" v-model="vac.descricao">
-        <button type="submit"> Salvar</button>
-     </form>
+     <b-form @submit="postData" method="post">
+        <h5>Nome</h5>
+         <b-form-input type="text" name="nome" v-model="vac.nome"> </b-form-input> <br> <br>
+         <h5>Fabricante</h5>
+        <b-form-input type="text" name="fabricante" v-model="vac.fabricante"> </b-form-input><br> <br>
+        <h5>Descrição</h5>
+         <b-form-textarea type="text" name="descricao" v-model="vac.descricao"> </b-form-textarea>
+         <b-button variant="success" style="margin: 20px;" id="show-btn" type="submit" >SALVAR</b-button>
+        <b-button variant="danger" style="margin: 20px;" id="show-btn" @click="hideModal()" type="button">CANCELAR</b-button>
+       
+     </b-form>
        </b-modal>
   </div>
-
-        <b-button variant="outline-primary">Button</b-button>
      
-<TableVac/>
+<TableVac :key="componentKey" />
     </main>
 </template>
 
@@ -47,6 +39,7 @@ export default {
     TableVac
   },
   data(){return{
+      componentKey:0,
       vac:{
           nome: null,
           fabricante: null,
@@ -54,9 +47,13 @@ export default {
       }
   }},
      methods: {
+         forceRerender() {
+      this.componentKey += 1;
+    },
          postData(e){
              this.axios.post("http://localhost:6767/addVaccine", this.vac).then((result) =>{
                  alert(result.data.message);
+                 this.forceRerender();
              })
              e.preventDefault();
          },

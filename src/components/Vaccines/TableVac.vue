@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-table id="kids-table" hover striped :items="items"></b-table>
+    <b-table style="max-width:500px" bordered id="kids-table" hover striped :fields="fields" :items="items"></b-table>
 
   </div>
 </template>
@@ -11,6 +11,21 @@ export default {
   data() {
     return {
       items: [],
+      fields:[
+        {
+          key: 'nome',
+          label:'NOME'
+        },
+        {
+          key: 'descricao',
+          label:'DESCRIÇÃO'
+        },
+        {
+          key:'fabricante',
+          label:'FABRICANTE'
+        }
+
+      ]
     };
   },
   mounted() {
