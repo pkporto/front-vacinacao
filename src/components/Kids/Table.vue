@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <b-table id="kids-table" hover striped  :fields="fields" :items="items">
-      <template v-slot:cell(actions)="data">
+      <template v-slot:cell(actions)="{ item }">
         <!-- <b-button variant="primary" @click="showModal">Cadastro de criança</b-button> -->
          <b-button variant="primary" @click="editar(data.id)">Remover</b-button>
-          <b-button variant="primary" v-bind:href="'/vaccination/' + id">Vacinas</b-button>
+          <b-button variant="primary" v-bind:href="'/vaccination/' + item.id">Vacinas</b-button>
+        <b-icon icon="file-earmark-excel" font-scale="2.5"></b-icon>
+
+         
       </template>
     </b-table>
 
@@ -16,7 +19,6 @@ import api from "@/services/api.js";
 export default {
   data() {
     return {
-      id: this.$route.params.id,
       items: [],
       fields:[
         {
@@ -44,11 +46,8 @@ export default {
         'Content-Type': 'application/json'
       }} ).then((response) => {
       this.items = response.data.data;
-console.log(this.items);
-console.log(this.id);
-
     });
-  },
+  }
 };
 </script>
 

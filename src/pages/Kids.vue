@@ -1,7 +1,11 @@
 <template>
     <main>
-        <b-button id="show-btn" @click="showModal">NOVA CRIANÇA</b-button>
+      <div style="margin: 20px;">
+        <b-button  style="margin: 20px;" id="show-btn" @click="showModal">NOVA CRIANÇA</b-button>
         <b-button variant="outline-primary" href="/vaccines">LISTAR VACINAS</b-button>
+        
+        </div>
+        
          <div>
     <b-modal ref="my-modal" hide-footer title="Cadastro de Criança">
      <form @submit="postData" method="post">
