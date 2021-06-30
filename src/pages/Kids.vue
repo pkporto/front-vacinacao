@@ -1,18 +1,22 @@
 <template>
     <main>
       <div style="margin: 20px;">
-        <b-button  style="margin: 20px;" id="show-btn" @click="showModal">NOVA CRIANÇA</b-button>
-        <b-button variant="outline-primary" href="/vaccines">LISTAR VACINAS</b-button>
+        <b-button variant="primary" style="margin: 20px;" id="show-btn" @click="showModal">NOVA CRIANÇA</b-button>
+        <b-button  href="/vaccines">LISTAR VACINAS</b-button>
         
         </div>
         
          <div>
     <b-modal ref="my-modal" hide-footer title="Cadastro de Criança">
-     <form @submit="postData" method="post">
-         <input type="text" name="nome" v-model="kid.nome"> <br> <br>
-        <input type="text" name="fabricante" v-model="kid.cpf"><br> <br>
-        <button type="submit"> Salvar</button>
-     </form>
+     <b-form @submit="postData" method="post">
+       <h4>Nome</h4>
+         <b-form-input type="text" name="nome" v-model="kid.nome"></b-form-input> <br> <br>
+         <h4>CPF</h4>
+        <b-form-input type="text" name="fabricante" v-model="kid.cpf"> </b-form-input> <br> <br>
+        <b-button variant="success" style="margin: 20px;" id="show-btn" type="submit">SALVAR</b-button>
+        <b-button variant="danger" style="margin: 20px;" id="show-btn" @click=" hideModal()" type="button">CANCELAR</b-button>
+        <!-- <button type="submit"> Salvar</button> -->
+     </b-form>
        </b-modal>
   </div>
 
@@ -38,7 +42,7 @@ export default {
   }},
      methods: {
          postData(e){
-             this.axios.post("http://localhost:6767/addVaccine", this.vac).then((result) =>{
+             this.axios.post("http://localhost:6767/addkid", this.kid).then((result) =>{
                  alert(result.data.message);
              })
              e.preventDefault();
