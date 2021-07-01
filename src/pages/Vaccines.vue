@@ -53,6 +53,7 @@ export default {
          postData(e){
              this.axios.post("http://localhost:6767/addVaccine", this.vac).then((result) =>{
                  alert(result.data.message);
+                  
                  this.forceRerender();
              })
              e.preventDefault();
