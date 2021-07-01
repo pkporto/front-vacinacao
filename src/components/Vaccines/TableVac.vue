@@ -14,15 +14,18 @@ export default {
       fields:[
         {
           key: 'nome',
-          label:'NOME'
+          label:'NOME',
+           tdClass: 'tbRow'
         },
         {
           key: 'descricao',
-          label:'DESCRIÇÃO'
+          label:'DESCRIÇÃO',
+          tdClass: 'tbRow'
         },
         {
           key:'fabricante',
-          label:'FABRICANTE'
+          label:'FABRICANTE',
+          tdClass: 'tbRow'
         }
 
       ]
@@ -42,7 +45,9 @@ export default {
   padding: 10px;
 }
 
-
+.tbRow{
+  max-width: 300px !important;
+}
 
 
 </style>

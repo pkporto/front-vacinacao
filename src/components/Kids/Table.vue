@@ -4,7 +4,7 @@
       <template v-slot:cell(actions)="{ item }" >
         <!-- <b-button variant="primary" @click="showModal">Cadastro de criança</b-button> -->
           <b-button variant="warning" style="margin: 0px 3px 0px 3px;"> <b-icon icon="pencil" font-scale="1.0"></b-icon></b-button>
-          <b-button variant="danger" style="margin: 0px 3px 0px 3px;" > <b-icon icon="trash" font-scale="1.0"></b-icon></b-button>
+          <b-button variant="danger"  style="margin: 0px 3px 0px 3px;" > <b-icon icon="trash" font-scale="1.0"></b-icon></b-button>
          <!-- <b-button variant="primary" @click="editar(data.id)">Remover</b-button> -->
           <b-button variant="primary" v-bind:href="'/vaccination/' + item.id" style="margin: 0px 3px 0px 3px;"> <b-icon icon="list" font-scale="1.0"></b-icon></b-button>
 
@@ -13,6 +13,10 @@
     </b-table>
 
   </div>
+
+
+  
+
 </template>
 
 <script>
@@ -38,6 +42,15 @@ export default {
         }
       ]
     };
+  },
+  methods:{
+    
+      showModal(modal) {
+        this.$refs[modal].show()
+      },
+      hideModal(modal) {
+        this.$refs[modal].hide()
+      }
   },
  
   mounted() {

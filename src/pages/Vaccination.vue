@@ -1,6 +1,6 @@
 <template>
     <main>
-  <h1>Vainas do {{id}} </h1>
+  <h1>Vainas do {{nome}} </h1>
     <b-form @submit="postData" method="post">
       <b-form-group>
         <div style="display:flex;">
@@ -42,6 +42,7 @@ export default {
     },
      data() {
     return {
+      nome: null,
       componentKey: 0,
       id: this.$route.params.id,
       vaccination:{
@@ -67,7 +68,18 @@ export default {
       this.forceRerender();
       console.log(this.items);
 
-    });
+    
+
+    })
+      api.get("/getKid/1").then((response) => {
+      this.nome = response.data.data[0].nome;
+      // this.forceRerender();
+      console.log(response);
+
+    }).catch((e)=>console.error(e)
+
+    )
+     
   },
   methods:{
      postData(e){
@@ -82,7 +94,8 @@ this.clearFields();
          clearFields(){
               this.vaccination.lote= "",
        this.vaccination.enf="",
-        this.vaccination.data_vac=""
+        this.vaccination.data_vac="",
+        this.vaccination.id_vacina= ""
          },
             forceRerender() {
       this.componentKey += 1;
