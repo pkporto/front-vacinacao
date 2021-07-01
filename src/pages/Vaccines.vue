@@ -34,7 +34,7 @@ import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 import TableVac from '../components/Vaccines/TableVac.vue'
 export default {
-    name: 'Kids',
+    name: 'Vaccines',
      components:{
     TableVac
   },
