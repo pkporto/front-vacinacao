@@ -1,6 +1,6 @@
 <template>
     <main>
-  <h1>Vainas do {{nome}} </h1>
+  <h1>Vacinas do {{nome}} </h1>
     <b-form @submit="postData" method="post">
       <b-form-group>
         <div style="display:flex;">
