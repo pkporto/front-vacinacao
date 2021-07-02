@@ -1,8 +1,8 @@
 <template>
-    <main>
+    <main >
       <h1>Lista de crianças</h1>
       <div style="margin: 20px;">
-        <b-button variant="primary" style="margin: 20px;" id="show-btn" @click="showModal(null,'cadastro-modal')">NOVA CRIANÇA</b-button>
+        <b-button  :key="componentKey"  variant="primary" style="margin: 20px;" id="show-btn" @click="showModal(null,'cadastro-modal')">NOVA CRIANÇA</b-button>
         <b-button  href="/vaccines">LISTAR VACINAS</b-button>
         
         </div>
@@ -24,7 +24,7 @@
 
 
           <div  id="app">
-    <b-table :key="componentKey"   bordered id="kids-table" hover striped  :fields="fields"  :items="items">
+    <b-table  bordered id="kids-table" hover striped  :fields="fields"  :items="items"  >
       <template  v-slot:cell(actions)="{ item }" >
         <!-- <b-button variant="primary" @click="showModal">Cadastro de criança</b-button> -->
           <b-button variant="warning" style="margin: 0px 3px 0px 3px;"> <b-icon icon="pencil" font-scale="1.0"></b-icon></b-button>
@@ -110,10 +110,14 @@ export default {
                  },
          postData(e){
              this.axios.post("http://localhost:6767/addkid", this.kid).then((result) =>{
+               if(result.data.status){
                  alert(result.data.message);
-                 console.log(this.componentKey);
+ this.hideModal('cadastro-modal');
+       this.$router.go();
+               this.clearFields();
+               }
                 this.hideModal('cadastro-modal');
-               this.forceRerender();
+       this.$router.go();
                this.clearFields();
                
              })
@@ -122,11 +126,28 @@ export default {
 
             deleteKid(e){
              this.axios.delete("http://localhost:6767/deletekid/" + this.id).then((result) =>{
-                 alert(result.data.message);
+                  alert(result.data.message);
                      console.log(this.componentKey);
-this.hideModal('delete-modal');
+        this.hideModal('delete-modal');
+        this.$router.go();
                this.forceRerender();
                this.clearFields();
+        //        if(result.data.status){
+        //           alert(result.data.message);
+        //              console.log(this.componentKey);
+        // this.hideModal('delete-modal');
+        // this.$router.go();
+        //        this.forceRerender();
+        //        this.clearFields();
+        //        }else{
+        //               alert("");
+        //              console.log(this.componentKey);
+        // this.hideModal('delete-modal');
+        // this.$router.go();
+        //        this.forceRerender();
+        //        this.clearFields();
+        //        }
+                
                
              })
              e.preventDefault();
