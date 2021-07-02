@@ -1,6 +1,6 @@
 <template>
     <main>
-  <h1>Vacinas do {{nome}} </h1>
+  <h1>Vacinas {{nome}} </h1>
     <b-form @submit="postData" method="post">
       <b-form-group>
         <div style="display:flex;">
@@ -71,7 +71,7 @@ export default {
     
 
     })
-      api.get("/getKid/1").then((response) => {
+      api.get(`/getKid/` + this.$route.params.id).then((response) => {
       this.nome = response.data.data[0].nome;
       // this.forceRerender();
       console.log(response);

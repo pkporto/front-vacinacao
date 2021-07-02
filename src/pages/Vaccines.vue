@@ -2,8 +2,8 @@
     <main>
       <h1>Lista de vacinas</h1>
 <div style="margin: 20px;">
-        <b-button variant="primary" style="margin: 20px;" id="show-btn" @click="showModal">Nova vacina</b-button>
-       <b-button href="/kids" >Cancelar</b-button>
+        <b-button variant="primary" style="margin: 20px;" id="show-btn" @click="showModal">NOVA VACINA</b-button>
+       <b-button href="/kids" >VOLTAR</b-button>
 </div>
 
  <div>
