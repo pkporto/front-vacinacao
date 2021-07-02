@@ -2,7 +2,7 @@
     <main >
       <h1>Lista de crianças</h1>
       <div style="margin: 20px;">
-        <b-button  :key="componentKey"  variant="primary" style="margin: 20px;" id="show-btn" @click="showModal(null,'cadastro-modal')">NOVA CRIANÇA</b-button>
+        <b-button  :key="componentKey"  variant="primary" style="margin: 20px;" id="show-btn" @click="showModal(null, null,null,'cadastro-modal')">NOVA CRIANÇA</b-button>
         <b-button  href="/vaccines">LISTAR VACINAS</b-button>
         
         </div>
@@ -27,8 +27,8 @@
     <b-table  bordered id="kids-table" hover striped  :fields="fields"  :items="items"  >
       <template  v-slot:cell(actions)="{ item }" >
         <!-- <b-button variant="primary" @click="showModal">Cadastro de criança</b-button> -->
-          <b-button variant="warning" style="margin: 0px 3px 0px 3px;"> <b-icon icon="pencil" font-scale="1.0"></b-icon></b-button>
-          <b-button variant="danger" @click="showModal(item.id, 'delete-modal')" style="margin: 0px 3px 0px 3px;" > <b-icon icon="trash" font-scale="1.0"></b-icon></b-button>
+          <b-button variant="warning" @click="showModal(item.id, item.nome, item.cpf, 'edit-modal')"  style="margin: 0px 3px 0px 3px;"> <b-icon icon="pencil" font-scale="1.0"></b-icon></b-button>
+          <b-button variant="danger" @click="showModal(item.id, null, null, 'delete-modal')" style="margin: 0px 3px 0px 3px;" > <b-icon icon="trash" font-scale="1.0"></b-icon></b-button>
          <!-- <b-button variant="primary" @click="editar(data.id)">Remover</b-button> -->
           <b-button variant="primary" v-bind:href="'/vaccination/' + item.id" style="margin: 0px 3px 0px 3px;"> <b-icon icon="list" font-scale="1.0"></b-icon></b-button>
 
@@ -47,6 +47,21 @@
      </b-form>
        </b-modal>
   </div>
+
+     <div>
+    <b-modal ref="edit-modal" hide-footer title="Cadastro de Criança">
+     <b-form @submit="editKid" method="put">
+       <h4>Nome</h4>
+         <b-form-input type="text" name="nome" v-model="kid.nome"></b-form-input> <br> <br>
+         <h4>CPF</h4>
+        <b-form-input type="text" name="fabricante" v-model="kid.cpf"> </b-form-input> <br> <br>
+        <b-button variant="success"  style="margin: 20px;" id="show-btn" type="submit" >SALVAR</b-button>
+        <b-button variant="danger" style="margin: 20px;" id="show-btn" @click="hideModal('edit-modal')" type="button">CANCELAR</b-button>
+        <!-- <button type="submit"> Salvar</button> -->
+     </b-form>
+       </b-modal>
+  </div>
+
 
 
 
@@ -152,7 +167,27 @@ export default {
              })
              e.preventDefault();
          },
-      showModal(id, modal) {
+         editKid(e){
+   this.axios.put("http://localhost:6767/editkid", this.kid).then((result) =>{
+               if(result.data.status){
+                 alert(result.data.message);
+ this.hideModal('edit-modal');
+      //  this.$router.go();
+               this.clearFields();
+                 this.$router.go();
+               }
+                 this.$router.go();
+                this.hideModal('edit-modal');
+      //  this.$router.go();
+               this.clearFields();
+               
+             })
+              e.preventDefault();
+         },
+      showModal(id, nome,cpf, modal) {
+        this.kid.nome = nome;
+        this.kid.cpf = cpf;
+        this.kid.id = id;
         this.id = id;
         this.$refs[modal].show()
       },
